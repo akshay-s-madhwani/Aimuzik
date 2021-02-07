@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Aimuzik/static/css/main.ea70e130.chunk.css",
-    "main.js": "/Aimuzik/static/js/main.9d697c8e.chunk.js",
-    "main.js.map": "/Aimuzik/static/js/main.9d697c8e.chunk.js.map",
+    "main.js": "/Aimuzik/static/js/main.c77debc2.chunk.js",
+    "main.js.map": "/Aimuzik/static/js/main.c77debc2.chunk.js.map",
     "runtime-main.js": "/Aimuzik/static/js/runtime-main.0dbea2f5.js",
     "runtime-main.js.map": "/Aimuzik/static/js/runtime-main.0dbea2f5.js.map",
     "static/js/2.7b4d7039.chunk.js": "/Aimuzik/static/js/2.7b4d7039.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.0dbea2f5.js",
     "static/js/2.7b4d7039.chunk.js",
     "static/css/main.ea70e130.chunk.css",
-    "static/js/main.9d697c8e.chunk.js"
+    "static/js/main.c77debc2.chunk.js"
   ]
 }
