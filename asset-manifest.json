@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Aimuzik/static/css/main.82bf9975.chunk.css",
-    "main.js": "/Aimuzik/static/js/main.ca6ff422.chunk.js",
-    "main.js.map": "/Aimuzik/static/js/main.ca6ff422.chunk.js.map",
+    "main.css": "/Aimuzik/static/css/main.08d5e681.chunk.css",
+    "main.js": "/Aimuzik/static/js/main.023caf8e.chunk.js",
+    "main.js.map": "/Aimuzik/static/js/main.023caf8e.chunk.js.map",
     "runtime-main.js": "/Aimuzik/static/js/runtime-main.6cbf7488.js",
     "runtime-main.js.map": "/Aimuzik/static/js/runtime-main.6cbf7488.js.map",
     "static/js/2.c7cbb2eb.chunk.js": "/Aimuzik/static/js/2.c7cbb2eb.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.977d0f5d.chunk.js": "/Aimuzik/static/js/3.977d0f5d.chunk.js",
     "static/js/3.977d0f5d.chunk.js.map": "/Aimuzik/static/js/3.977d0f5d.chunk.js.map",
     "index.html": "/Aimuzik/index.html",
-    "static/css/main.82bf9975.chunk.css.map": "/Aimuzik/static/css/main.82bf9975.chunk.css.map",
+    "static/css/main.08d5e681.chunk.css.map": "/Aimuzik/static/css/main.08d5e681.chunk.css.map",
     "static/js/2.c7cbb2eb.chunk.js.LICENSE.txt": "/Aimuzik/static/js/2.c7cbb2eb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6cbf7488.js",
     "static/js/2.c7cbb2eb.chunk.js",
-    "static/css/main.82bf9975.chunk.css",
-    "static/js/main.ca6ff422.chunk.js"
+    "static/css/main.08d5e681.chunk.css",
+    "static/js/main.023caf8e.chunk.js"
   ]
 }
