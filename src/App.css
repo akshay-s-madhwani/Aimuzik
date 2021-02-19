@@ -34,9 +34,9 @@ h3 {
 }
 .banner {
 	min-width: 96%;
-	min-height: 100px;
-	height: 3.5rem;
-	margin: 2% 2%;
+	min-height: 104px;
+	height: 6.5rem;
+	margin: 2% 2% 0 2%;
 	background: linear-gradient(
 			216deg,
 			rgba(77, 77, 77, 0.05) 0%,
@@ -117,10 +117,11 @@ h3 {
 }
 .slide-wrap {
 	height: 46vh;
-	min-height: 250px;
+	min-height: 257px;
 	max-height: 300px;
 	overflow-x: scroll;
 	margin-right: 2vw;
+	padding-top: 3px;
 }
 .card-slide {
 	width: 100%;
@@ -137,7 +138,6 @@ h3 {
 	width: 45vw;
 	max-width: 200px;
 	height: 100%;
-	background: rgba(120, 120, 250, 0.8);
 	margin: 0 2.5vw;
 	border-radius: 5px;
 	background: radial-gradient(
@@ -155,26 +155,35 @@ h3 {
 	);
 	background-position: center;
 	background-repeat: no-repeat;
-	box-shadow: 0px 1px 15px rgba(72, 7, 149, 0.5);
+	background-size: 100% 100%;
+	box-shadow: 0px 1px 10px 1px rgba(72, 7, 149, 0.5);
 	display: flex;
 	flex-flow: column;
 	justify-content: flex-end;
 	overflow: hidden;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
 }
 .card-info {
 	width: 100%;
 	height: 25%;
 	border-radius: 0 0 5px 5px;
-	box-shadow: 0 0.1px 10px #012110;
-	background-color: rgba(50, 50, 50, 0.5);
-	backdrop-filter: (50px);
+	box-shadow: 0 0.2px 10px #012110;
+	background-color: rgba(210, 10, 250, 0.3);
+	backdrop-filter: blur(2.5px);
 	white-space: wrap;
+	-webkit-border-radius: ;
+	-moz-border-radius: ;
+	-ms-border-radius: ;
+	-o-border-radius: ;
 }
 .card-info > h4,
 p {
 	margin-left: 5%;
 	margin-bottom: 2%;
-	color: #eef;
+	color: #fdfdfd;
 }
 .card-info h4 {
 	margin-top: 2%;
@@ -193,20 +202,31 @@ p {
 .video-display-inner-wrap {
 	width: 100%;
 	display: flex;
-	height: 60vmax;
+	height: 55vmax;
 	min-width: 90%;
 	box-shadow: 4px 4px 20px rgba(72, 7, 159, 0.4);
 	position: relative;
 }
 .display-showcase {
-	height: 60vmax;
+	height: 100%;
 	width: 63vw;
 	min-height: 90%;
+	position: relative;
 }
 .display-showcase > iframe {
 	width: 100%;
 	height: 100%;
 	border: none;
+}
+.video-display-icon {
+	position: absolute;
+	color: #fdfdfd;
+	z-index: 4;
+	bottom: 10px;
+	font-size: 2rem;
+	right: 10px;
+	box-shadow: 0 1px 5px #101010;
+	background: rgba(10, 10, 10, 0.4);
 }
 .display-vertical-slide-wrap {
 	height: 100%;
@@ -227,7 +247,7 @@ p {
 	height: 26vw;
 	background: url("https://i.ibb.co/92K5wYG/anime-anime-girls-rem-re-zero-re-zero-wallpaper-thumb.jpg");
 	background-position: center;
-	background-size: cover;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	margin-top: 2vh;
 	border-radius: 5px;
@@ -241,12 +261,13 @@ p {
 }
 .bi-play-btn-fill {
 	font-size: 2.1em;
-	border-radius: 50px;
-	opacity: 0.7;
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	-ms-border-radius: 50px;
-	-o-border-radius: 50px;
+	border-radius: 10px;
+	opacity: 0.6;
+	pointer-events: none;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
 }
 .vertical-items::nth-child(1) {
 	margin-top: 0.2vh;
@@ -258,7 +279,7 @@ p {
 .multi_card {
 	position: relative;
 	display: block;
-	margin: 0 28vw;
+	margin: 0 30vmin;
 }
 .multi_card:nth-child(1) {
 	margin-left: 0;
@@ -291,21 +312,10 @@ p {
 	height: 45vw;
 	margin: 3.5vh 2.5vw;
 	border-radius: 50%;
-	background: radial-gradient(
-		circle at right top,
-		rgb(36, 9, 119) 0%,
-		rgb(36, 9, 119) 48%,
-		rgb(72, 7, 149) 48%,
-		rgb(72, 7, 149) 53%,
-		rgb(109, 5, 178) 53%,
-		rgb(109, 5, 178) 56%,
-		rgb(145, 2, 208) 56%,
-		rgb(145, 2, 208) 69%,
-		rgb(181, 0, 237) 69%,
-		rgb(181, 0, 237) 100%
-	);
-	background-position: center;
+
+	background-position: left;
 	background-repeat: no-repeat;
+	background-size: 100% 100%;
 	box-shadow: 0px 1px 20px rgba(72, 7, 349, 0.5);
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -433,21 +443,30 @@ p {
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
 	grid-gap: 4px;
+	margin-bottom: 4px;
+}
+.video-page-tiles:last-child {
+	margin-bottom: 10vh;
 }
 .video-page-tiles:nth-child(even) > .video-page-frame {
-	width: 50vmax;
 	height: 50vmax;
 	grid-column: 2 / span 3;
 	grid-row: 1 / span 2;
 	border: none;
+	margin-left: 4px;
+	position: relative;
 }
 .video-page-frame {
-	width: 50vmax;
 	height: 50vmax;
 	grid-column: 1 / span 2;
 	grid-row: 1 / span 2;
 	border: none;
 	margin-right: 4px;
+	position: relative;
+}
+.video-page-frame > iframe {
+	width: 100%;
+	height: 100%;
 }
 .video-page-img {
 	align-self: stretch;
@@ -456,13 +475,18 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: url("https://i.ibb.co/92K5wYG/anime-anime-girls-rem-re-zero-re-zero-wallpaper-thumb.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: 100% 100%;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
 }
 .video-page-img > .bi-play-btn-fill {
-	opacity: 0.4;
+	opacity: 0.6;
+	font-size: 2.5rem;
+	pointer-events: none;
 }
 
 .page-4 {
@@ -589,11 +613,11 @@ p {
 	-ms-transition: ;
 	-o-transition: ;
 	padding-bottom: 10vh;
-	transform: translateY(0vh);
-	-webkit-transform: translateY(0vh);
-	-moz-transform: translateY(0vh);
-	-ms-transform: translateY(0vh);
-	-o-transform: translateY(0vh);
+	transform: translateY(100vh);
+	-webkit-transform: ;
+	-moz-transform: ;
+	-ms-transform: ;
+	-o-transform: ;
 	-webkit-border-radius: 30px 30px 0 0;
 	-moz-border-radius: 30px 30px 0 0;
 	-ms-border-radius: 30px 30px 0 0;
@@ -603,13 +627,14 @@ p {
 	position: absolute;
 	top: calc(3vh + 20px);
 	right: 20px;
-	font-size: 1.5rem;
-	opacity: 1;
+	font-size: 2rem;
+	z-index: 1;
 	transition: opacity 1.4s linear;
 	-webkit-transition: opacity 1.4s linear;
 	-moz-transition: opacity 1.4s linear;
 	-ms-transition: opacity 1.4s linear;
 	-o-transition: opacity 1.4s linear;
+	color: white;
 }
 .album-art-section {
 	width: 100%;
@@ -619,12 +644,30 @@ p {
 	justify-content: center;
 	position: relative;
 	background-color: deepskyblue;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 	border-radius: 30px 30px 20px 20px;
-	-webkit-border-radius: ;
-	-moz-border-radius: ;
-	-ms-border-radius: ;
-	-o-border-radius: ;
+	-webkit-border-radius: 30px 30px 20px 20px;
+	-moz-border-radius: 30px 30px 20px 20px;
+	-ms-border-radius: 30px 30px 20px 20px;
+	-o-border-radius: 30px 30px 20px 20px;
 }
+.album-art-section::after {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: rgba(110, 110, 210, 0.5);
+	backdrop-filter: blur(3px);
+	pointer-events: none;
+	border-radius: inherit;
+	-webkit-border-radius: inherit;
+	-moz-border-radius: inherit;
+	-ms-border-radius: inherit;
+	-o-border-radius: inherit;
+}
+
 .album-art {
 	width: 150px;
 	height: 150px;
@@ -647,15 +690,23 @@ p {
 }
 
 .player-song-info {
-	width: 90%;
+	width: 95%;
 	padding: 0 5%;
 	margin-top: 4px;
 	margin-bottom: -2px;
 	display: flex;
-	flex-flow: column;
+	flex-flow: row wrap;
+	justify-content: space-around;
 	align-items: center;
 }
-.player-song-info > p {
+.song-name {
+	width: 40%;
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	align-self: center;
+}
+.song-name > p {
 	color: #010101;
 }
 #music-scrollbar,
@@ -774,6 +825,70 @@ input::-moz-range-track {
 	display: flex;
 	justify-content: space-between;
 	font-size: 1rem;
+}
+.video-player {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgb(32, 32, 32);
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-end;
+	align-items: baseline;
+	z-index: 9;
+	transition: all 0.1s ease-in;
+	-webkit-transition: all 0.1s ease-in;
+	-moz-transition: all 0.1s ease-in;
+	-ms-transition: all 0.1s ease-in;
+	-o-transition: all 0.1s ease-in;
+}
+.video-player-frame {
+	width: 100%;
+	height: 100vw;
+	border: none;
+	background-color: #edf;
+	min-height: 290px;
+}
+@media (min-width: 610px) {
+	.video-player-frame {
+		height: 100vh;
+	}
+}
+.changed {
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	width: 100vh;
+}
+.full {
+	margin: 0 !important;
+	bottom: 0;
+	position: absolute;
+}
+.x,
+.rotate {
+	font-size: 2rem;
+	color: rgb(195, 223, 241);
+	margin: 1rem 5%;
+	position: absolute;
+}
+.rotate {
+	bottom: -15px;
+	font-size: 3.5rem;
+}
+.x:hover,
+.rotate:hover {
+	color: #a5f;
+}
+.fix-x {
+	position: fixed;
+	bottom: 80vw;
+	z-index: 4;
+	font-size: 2.5rem;
 }
 canvas {
 	display: grid;

@@ -1,12 +1,19 @@
-import React from 'react';
+import React  from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+  <Router basename="https://akshay-s-madhwani.github.io/" >
+      <Switch>
+        <Route exact path = '/Aimuzik'>
+          <App />
+          </Route>
+        </Switch>
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

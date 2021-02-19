@@ -8,14 +8,14 @@ import Page4 from './Components/Page4';
 export default function App() {
   return (
     <Router>
-      <Route path = "/" exact component={Page1}/>
+      <Route path = "/Aimuzik" exact component={Page1}/>
       <Route path = '/search' component={Page2}/>
       <Route path = '/videos' component={Page3}/>
       <Route path = '/profile' component={Page4}/>
   
     <div className="nav">
       <div className="nav-item">
-        <Link to='/'><House className="nav-icons bi-house"/></Link>
+        <Link to='/Aimuzik'><House className="nav-icons bi-house"/></Link>
         </div>
         <div className="nav-item">
         <Link to='/search'><Search className="nav-icons"/></Link>
