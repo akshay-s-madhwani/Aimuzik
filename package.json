@@ -7,17 +7,17 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
-    "bootstrap-icons": "^1.3.0",
+    "bootstrap-icons": "^1.4.0",
     "p5": "^1.2.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-bootstrap-icons": "^1.3.0",
     "react-dom": "^17.0.1",
-    "react-icons": "^4.1.0",
+    "react-icons": "^4.2.0",
     "react-p5-wrapper": "^2.3.0",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^4.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -48,5 +48,24 @@
   },
   "devDependencies": {
     "gh-pages": "^3.1.0"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshay-s-madhwani/Aimuzik.git"
+  },
+  "author": "Akshay S madhwani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akshay-s-madhwani/Aimuzik/issues"
+  },
+  "keywords": [
+    "Music",
+    "player",
+    "Analyzer",
+    "music",
+    "streaming",
+    "app"
+  ]
 }

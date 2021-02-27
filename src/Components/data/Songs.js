@@ -198,6 +198,7 @@ if(!rand.includes(hindi)){
 if(!rand.includes(eng2)){
     rand.push(eng2);
   }
-}while(rand.length <=12);
+}while(rand.length <=10);
 
 export default {English2, English, Hindi, Korean, rand}
+

@@ -39,17 +39,12 @@ function Page1() {
   //Music source state
 let [musicSrc, setMusicSrc] = useState(songs['English'][0]);
 
-const updateMusic = (data) =>{
-  setMusicSrc(data);
-}
-let [song, setSong] = useState(null);
-const updateSrc = (src)=>{
-  setSong(src);
-}
+const updateMusic = (data) =>setMusicSrc(data);
+
 let [active, setActive] = useState(false);
-const toggler = ()=>{
-  setActive(!active);
-}
+const toggler = ()=>  setActive(!active);
+
+const setOn = ()=> {setActive( true);}
 
 return (
   <div className="pages page-1">
@@ -57,19 +52,21 @@ return (
   {Vplayer ?
 <VideoPlayer src={videoSrc} showNot={updateVplayer}/> : null}
 
-<MusicPlayer img = {musicSrc.img} name = {musicSrc.name} artist = {musicSrc.artist} song = {song} updateSrc = {updateSrc} src = {musicSrc.src} active = {active} toggler = {toggler}player={playerDown} style = {Mplayer}/>
+<MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer}/>
 
 
   <Banner/>
-    <CardSlider heading="Weekly Hits" data = {songs['rand']} onClick = {updateMusic} player = {playerUp} toggler = {toggler}/>
+    <CardSlider heading="Weekly Hits" data = {songs['rand']} onClick = {updateMusic} player = {playerUp} toggler = {setOn}/>
 
     <VideoComponent srcArray = {Videos} src={videoSrc} update = {updateVideoSrc} show={updateVplayer}/>
 
-    <CardSlider heading = "English Blockbusters" data = {songs['English2']} onClick = {updateMusic} player = {playerUp} toggler = {toggler}/>
-    <MultiCardSlider heading = "Top Trending" onClick = {updateMusic} player = {playerUp}/>
-    <CardSlider heading="English Top Charts" data = {songs['English'] }onClick = {updateMusic} player = {playerUp} toggler = {toggler}/>
-    <CardSlider heading="Hindi Top Charts" data = {songs['Hindi'] }onClick = {updateMusic} player = {playerUp} toggler = {toggler}/>
-    <CardSlider heading="Korean Top Charts" data = {songs['Korean'] }onClick = {updateMusic} player = {playerUp}  toggler = {toggler}/>
+    <CardSlider heading = "English Blockbusters" data = {songs['English2']} onClick = {updateMusic} player = {playerUp} toggler = {setOn}/>
+
+    <MultiCardSlider heading = "Top Trending" onClick = {updateMusic} player = {playerUp} toggler={setOn}/>
+    <CardSlider heading="English Top Charts" data = {songs['English']}onClick = {updateMusic} player = {playerUp} toggler = {setOn}/>
+
+    <CardSlider heading="Hindi Top Charts" data = {songs['Hindi']}onClick = {updateMusic} player = {playerUp} toggler = {setOn}/>
+    <CardSlider heading="Korean Top Charts" data = {songs['Korean'] }onClick = {updateMusic} player = {playerUp}  toggler = {setOn}/>
     <ArtistSlider heading = "Top Artists"/>
 </div>
   );
