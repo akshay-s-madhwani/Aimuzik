@@ -38,54 +38,62 @@ useEffect(()=>{
 
 	
 
-       let fft,music,spectrum,x,y;
+       let fft,music;
        function sketch(p){
 	       p.preload =()=>{
-		       music = p.loadSound(props.data.src)
+		       music = p.loadSound(`${props.data.src}`)
 	       }
 	       audio.onChange = ()=>{
 		       p.preload =()=>{
-		music = p.loadSound(audio.src)
+	music = p.loadSound(props.data.src.toString())
 		       }
 	       }
 	p.setup = () =>{
        
-           p.createCanvas(280,280);
-           p.angleMode('DEGREES')
-           fft = new p5.FFT(0.5,128);
-	   p.frameRate(30)
-	   
+           p.createCanvas(256,256);
+           p.angleMode(p.DEGREES)
+           fft = new p5.FFT(0.8,128);
+	   p.frameRate(30)	
+	
         }
         p.draw = ()=>{
-            spectrum = fft.analyze();
-            p.translate(p.width / 2 , p.height / 2);
-            p.fill(255,255,255)
-	    p.stroke(10,10,10)
-	for (let i = 0; i< spectrum.length; i++){
-	let x =p.map(i , 0 , spectrum.length,0,p.width);
-    let y = -p.height + p.map(spectrum[i],0,255,p.height,0);
+	p.background(0)	
+		let spectrum = fft.analyze();
+	p.fill(200)
+	p.stroke(120)
 
-    let r = p.map(spectrum[i],0,255,40,140);
-           x = r * p.sin(i);
-           y = r * p.cos(i );
-           p.rect(y,x,p.width/spectrum.length,p.height/2)
+            p.translate(p.width / 2 , p.height / 2);
+		p.beginShape()
+            
+	for (let i = 0; i< spectrum.length; i++){
+	let amp = spectrum[i]
+        let angle = p.map(i, 0, spectrum.length,0,360)
+    let r = p.map(amp,0,255,40,200);
+          let  x = r * p.cos(angle);
+          let  y = r * p.sin(angle);
+           p.vertex(x,y)
            }
+		p.endShape()
+		
            
     }
       
     if(props.active){
-	      p.loop();}
+	      p.loop();
+    }
     else{p.noLoop()}
 
     }
-
+const effects = useRef()
+if(audio.src){
+ new p5(sketch,effects.current);}
     
     return (
         <div className='player-body' style ={props.style}>
             <div className="album-art-section" style={{backgroundImage : `url(${props.data.img})`}}>
                 <ChevronDown className='bi-chevron-down' onClick ={()=>{props.player()}}/>
                 <img src={props.data.img} alt="Album Art" className="album-art"/>
-	    <P5Wrapper sketch={sketch } className = 'effects'/>
+	    <div ref={effects} id = 'effects'></div>
                 
                 </div>
                 <div className="player-controls">

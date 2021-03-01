@@ -1,8 +1,24 @@
 import React ,{useState}from 'react'
 import SearchBar from './page2/SearchBar';
 import SearchList from './page2/SearchList';
-import songs from './data/Songs'
-export default function Page2() {
+import MusicPlayer from './MusicPlayer';
+import songs  from './data/Songs';
+
+function Page2() {                                        
+  //Music Player component management             
+  let [Mplayer , setMplayer] = useState({transform
+ :`translateY(${100}vh)`})
+  function playerUp(){                                 setMplayer({transform :`translateY(${0}vh)`}
+);
+ }
+  function playerDown(){
+      setMplayer({transform :`translateY(${100}vh)
+`});
+  }
+//Music source state                        
+let [musicSrc, setMusicSrc] = useState(songs['English'][0]);
+
+const updateMusic = (data) =>setMusicSrc(data);                                                     let [active, setActive] = useState(false);        const toggler = ()=>  setActive(!active);                                                           const setOn = ()=> {setActive( true);}
     const [query, setQuery] = useState([]);
     let inp = '';
     const handleChange = (e)=>{
@@ -29,6 +45,7 @@ export default function Page2() {
     
     return (
         <div className='page-2'>
+    <MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer}/>
             <SearchBar change = {handleChange}/>
             
             {    
@@ -36,10 +53,10 @@ export default function Page2() {
                         if(src !== 'undefined'){
                  
                  return(
-                        <SearchList data={src}/>)}
+          <SearchList data={src} update = {updateMusic} player = {playerUp} toggler = {setOn}/>)}
                         else if(inp === ''){
                 return(
-                <SearchList data={songs['Hindi'][Math.ceil(Math.random()*7)]}/>
+                <SearchList data={songs['Hindi'][Math.ceil(Math.random()*7)]} update = {updateMusic} player = {playerUp} toggler = {setOn}/>
                             )
                         }
                     })
@@ -48,3 +65,4 @@ export default function Page2() {
         </div>
     )
 }
+export default Page2
