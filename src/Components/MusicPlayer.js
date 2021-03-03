@@ -19,12 +19,13 @@ const seeker = ()=>{
 },500)
 }
 
-const getAlbum =(data,src)=>{                           if(src in data){                                          return data.indexOf(src);
-      }                                                   else{                                                     return data;                              }}
+
 const [liked,setLiked]=useState(false);
 const likeToggle =()=>{setLiked(!liked)}
 
 useEffect(()=>{
+	let index = props.album.indexOf(props.data)
+    console.log(index, props.data)    
 	audio.src = props.data.src;
 	audio.load();
 	audio.play();
@@ -44,15 +45,16 @@ useEffect(()=>{
 	}
 },[props.active]);
 
+
 	const canvasRef = useRef()
-/*
+    useEffect(()=>{
 audio.onended =()=>{
-	let index = getAlbum(props.album,audio.src);
-	setMainData(props.album[index++]);
-audio.src = mainData.src;
-	audio.load();
-	audio.play();
-}
+	let index = props.album.indexOf(props.data);
+	props.setSrc(props.album[index++]);
+audio.load();
+console.log(index,props.data)
+    
+}},[props.data])
 /*
 function draw(ctx ,buffer,Width,Height){
                                                         analyser.getByteFrequencyData();                 ctx.fillStyle = `rgb(${255},${255},${255})`;
@@ -143,7 +145,15 @@ const timerFormat =(time)=>{let date = new Date(time*1000);
                     <div className="main-controls">
                         
                         <ArrowRepeat/>
-                        <ChevronLeft/>
+                        <ChevronLeft onClick = {()=>{
+                            let index = props.album.indexOf(props.data);
+                            if(index >=1){
+                            props.setSrc(props.album[index--]);}
+                        audio.load();
+                        if(!audio.isPlaying()){audio.play()}
+                        console.log(index,props.data)
+                            
+                        }}/>
                                 {
             props.active ?        
 <PauseFill className='bi-pause-fill' onClick={()=>{
@@ -156,7 +166,16 @@ const timerFormat =(time)=>{let date = new Date(time*1000);
     }/>
                                 }
                     
-                    <ChevronRight/>
+                    <ChevronRight onClick={()=>{
+                        
+                        let index = props.album.indexOf(props.data);
+                        if(index <= props.album.length -1){
+                        props.setSrc(props.album[index++]);}
+                    audio.load();
+                    if(!audio.isPlaying()){audio.play()}
+                    console.log(index,props.data)
+                        
+                    }}/>
                     <Shuffle/>
                            </div>
                            

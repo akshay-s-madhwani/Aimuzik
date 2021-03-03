@@ -54,7 +54,7 @@ return (
   {Vplayer ?
 <VideoPlayer src={videoSrc} showNot={updateVplayer}/> : null}
 
-<MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer} album = {album} />
+<MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer} album = {album} setSrc = {setMusicSrc} />
 
 
   <Banner/>
