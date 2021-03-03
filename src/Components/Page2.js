@@ -7,13 +7,13 @@ import songs  from './data/Songs';
 function Page2() {                                        
   //Music Player component management             
   let [Mplayer , setMplayer] = useState({transform
- :`translateY(${100}vh)`})
-  function playerUp(){                                 setMplayer({transform :`translateY(${0}vh)`}
+ :`translateY(${100}vh)`,zIndex:6})
+  function playerUp(){                                 setMplayer({transform :`translateY(${0}vh)`,zIndex:10}
 );
  }
   function playerDown(){
       setMplayer({transform :`translateY(${100}vh)
-`});
+`,zIndex:6});
   }
 //Music source state                        
 let [musicSrc, setMusicSrc] = useState(songs['English'][0]);

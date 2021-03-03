@@ -9,7 +9,8 @@ export default function songCard(props) {
              props.player();
              props.update(props.data);
              props.toggler();
-             
+	     props.updateAlbum(props.album);
+        
             }
               } >
             <div className="card-info">

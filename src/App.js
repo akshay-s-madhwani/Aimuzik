@@ -8,23 +8,23 @@ import Page4 from './Components/Page4';
 export default function App() {
   return (
     <Router>
-      <Route path = "/Aimuzik" exact component={Page1}/>
+      <Route path = "/Aimuzik/" exact component={Page1}/>
       <Route path = '/search' component={Page2}/>
       <Route path = '/videos' component={Page3}/>
       <Route path = '/profile' component={Page4}/>
   
     <div className="nav">
       <div className="nav-item">
-        <Link to='/Aimuzik'><House className="nav-icons bi-house"/></Link>
+        <Link to='/Aimuzik/'><House className="nav-icons bi-house"onClick={()=>{window.scrollTo(0,0)}}/></Link>
         </div>
         <div className="nav-item">
-        <Link to='/search'><Search className="nav-icons"/></Link>
+        <Link to='/search'><Search className="nav-icons"onClick={()=>{window.scrollTo(0,0)}}/></Link>
         </div>
         <div className="nav-item">
-        <Link to='/videos'><CollectionPlay className="nav-icons"/></Link>
+        <Link to='/videos'><CollectionPlay className="nav-icons" onClick={()=>{window.scrollTo(0,0)}}/></Link>
         </div>
         <div className="nav-item">
-        <Link to='/profile'><Person className="nav-icons"/></Link>
+        <Link to='/profile'><Person className="nav-icons" onClick={()=>{window.scrollTo(0,0)}}/></Link>
         </div>
       </div>
     

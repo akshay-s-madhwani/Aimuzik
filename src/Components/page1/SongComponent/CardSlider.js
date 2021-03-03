@@ -14,8 +14,8 @@ export default function mainDisplay(props) {
     { props.data.map((song) => {   
                     
          return(           <SongCard key = {props.data.indexOf[song]}  data = {song} 
-             player = {props.player} update = {props.onClick} toggler = {props.toggler}
-             />)
+             player = {props.player} update = {props.onClick} toggler = {props.toggler} album={props.data} updateAlbum={props.album}
+           />)
     })
 } 
                 </div>

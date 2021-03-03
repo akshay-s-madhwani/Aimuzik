@@ -100,58 +100,83 @@ h1,h2,h3,h4,p{
 	display:block;
 	color:#efefef;
 	padding:30px 1rem ;
-	font-size:1rem;
+	font-size:1.2rem;
 	font-family:'Poppins ';
 	animation:move 15s infinite ease-in;
     }
     @keyframes move{
-	        0%{
-	content:'Explore The most Underrated and Rare collection of Songs';    
-	  transform:translateX(0);
-          font-size:1rem;						    }			       20%{
-	  content:'Explore The most Underrated and Rare collection of Songs';    
-	  transform:translateX(0);
-									         }			     25%{					          transform:translateX(200%);
-	   }
-							   27%{
-	 content:"";
-	transform:translateX(-150%);
-	  }
-							 30%{    content:'Created By fresh Talents across the Globe!!! ';
-	transform:translateX(0);						     }
-	 50%{
-	  content:'Created By fresh Talents across the Globe!!! ';
-	  transform:translateX(0);
-	  }
-	 55%{
-         transform:translateX(200%);
-		}
-         56%{font-size:1rem;
-	  padding:30px 1rem;}
-         57%{
-            content:'';
-	 transform:translateX(-150%);
-	  font-size:1.5rem;
-    padding:15px 1rem;					    }
-        60%{
-	   content:'Welcome to Aimuzik';
-           transform:translateX(0);
-           font-size:1.5rem;
-	     }
-	  90%{
-	  content:'Welcome to Aimuzik';
-	  transform:translateX(0);
-		   }
-	95%{
-	transform:translateX(170%);  }
-						      97%{
-    content:'';
-    transform:translateX(-150%);
- font-size:1.5rem;
-  padding:15px 1rem;
-	 }
-
-	}
+	  
+	  0%{content:'Explore The most Underrated and Rare collection of Songs';
+    transform:translateX(-120);
+    font-size:1.2rem;
+    padding:30px 1rem;
+}
+    5%{
+        content:'Explore The most Underrated and Rare collection of Songs';    
+        transform:translateX(0);
+        font-size:1.2rem;
+        height:100px;
+    }
+    20%{
+     content:'Explore The most Underrated and Rare collection of Songs';    
+        transform:translateX(0);
+    
+    }
+    25%{
+        transform:translateX(150%);
+        position:relative;
+    }
+    27%{
+    content:"";
+        transform:translateX(-120%);
+        position:absolute;
+    }
+    30%{    content:'Created By Independent Artists of across the Globe!!! ';
+        transform:translateX(0);
+        position:relative;
+    }
+    50%{
+         content:'Created By Independent Artists of across the Globe!!! ';
+        transform:translateX(0);
+    }
+    55%{
+        transform:translateX(150%);
+        
+    }
+    56%{font-size:1.2rem;
+    padding:30px 1rem;
+    position:relative;}
+    57%{
+        content:'';
+        transform:translateX(-120%);
+        font-size:1.5rem;
+        padding:35px 1rem;
+        position:absolute;
+    }
+    60%{
+        content:'Welcome to Aimuzik';
+        transform:translateX(0);
+        font-size:1.5rem;
+        position:relative;
+    }
+    90%{
+    content:'Welcome to Aimuzik';
+        transform:translateX(0);
+    }
+    95%{
+        transform:translateX(150%);
+        position:relative;
+    }
+    100%{
+        content:'';
+        transform:translateX(-120%);
+        font-size:1.5rem;
+        padding:35px 1rem;
+        position:absolute;
+        height:100px;
+    }
+    
+}						    
 .nav {
 	position: fixed;
 	bottom: 0;
@@ -159,7 +184,7 @@ h1,h2,h3,h4,p{
 	width: 100%;
 	height: 55px;
 	background-color: #fefeff;
-	z-index:15;
+	z-index:7;
 	justify-content: space-around;
 	align-items: center;
 	font-size: 1.2em;
@@ -267,15 +292,16 @@ p {
 .video-display-inner-wrap {
 	width: 100%;
 	display: flex;
-	height: 55vmax;
+	flex-direction:column;
+	height: 65vmax;
 	min-width: 90%;
 	box-shadow: 4px 4px 20px rgba(72, 7, 159, 0.4);
 	position: relative;
 }
 .display-showcase {
-	height: 100%;
-	width: 63vw;
-	min-height: 90%;
+	height: 63%;
+	width: 100%;
+	min-height: 60%;
 	position: relative;
 }
 .display-showcase > iframe {
@@ -294,22 +320,24 @@ p {
 	background: rgba(10, 10, 10, 0.4);
 }
 .display-vertical-slide-wrap {
-	height: 100%;
-	overflow-y: auto;
-	width: 37vw;
+	height: 37%;
+	overflow-x: auto;
+	width: 100%;
 }
 .display-vertical-slide {
-	width: 100%;
+	height: 100%;
+	width:260vw;
 	display: flex;
-	flex-flow: column;
+	flex-flow: row;
 	align-items: center;
 	background-color: #f8f8ff;
 	box-shadow: inset 2px 0 10px rgba(20, 20, 20, 0.3);
-	padding-bottom: 10px;
+	padding-right: 10px;
+	justify-content:space-around;
 }
 .vertical-items {
-	width: 80%;
-	height: 26vw;
+	height: 80%;
+	width: 26vw;
 	background: url("https://i.ibb.co/92K5wYG/anime-anime-girls-rem-re-zero-re-zero-wallpaper-thumb.jpg");
 	background-position: center;
 	background-size: 100% 100%;
@@ -335,7 +363,7 @@ p {
 	-o-border-radius: 10px;
 }
 .vertical-items::nth-child(1) {
-	margin-top: 0.2vh;
+	margin-left: 0.2vh;
 }
 #blockbuster-slide {
 	display: flex;
@@ -518,16 +546,18 @@ p {
 	grid-column: 2 / span 3;
 	grid-row: 1 / span 2;
 	border: none;
-	margin-left: 4px;
+	margin-left: 1px;
 	position: relative;
 }
 .video-page-frame {
 	height: 50vmax;
 	grid-column: 1 / span 2;
 	grid-row: 1 / span 2;
-	border: none;
-	margin-right: 4px;
+	border:0;
+	outline:none;
+	margin-right:1px;
 	position: relative;
+	border-radius:5px !important ;
 }
 .video-page-frame > iframe {
 	width: 100%;
@@ -669,7 +699,7 @@ p {
 	flex-flow: column;
 	align-items: center;
 	background-color: #fbfffa;
-	z-index: 5;
+	z-index: 8;
 	top: -3vh;
 	border-radius: 30px 30px 0 0;
 	transition: all 1.2s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -747,7 +777,7 @@ p {
 	position: absolute;
 	display: grid;
 	place-items: center;
-	z-index: 2;
+	z-index: 1;
 }
 .player-controls {
 	height: 40%;
@@ -770,39 +800,77 @@ p {
 	display: flex;
 	flex-flow: column;
 	align-self: center;
+	justify-content:flex-start;
 }
 .song-name > p {
 	color: #010101;
+	margin-left:-3px;
+}
+.heart-fill{
+	color:red;}
+	.bi-heart,.soundwave{
+font-size:1.4rem;
+	}
+.scroll-wrap{
+width:100%;
+height:20%;
+display:grid;
+grid-template-columns:1fr 1fr;
+grid-template-rows:1fr 1fr;
+align-items:center;
+}
+.songTimer{
+color:#010101;
+justify-self:flex-start;
+font-size:12px;
+font-weight:bold;
+}
+.songDuration{
+color:#010101;
+justify-self:flex-end;
+font-size:12px;
+font-weight:bold;
+padding-right:5px;
 }
 #music-scrollbar,
 #volume-scrollbar {
 	width: 95%;
-	margin: 0 2.5%;
+	
 	-webkit-appearance: none;
+	grid-column:1/span 3;
+	margin:0 2.5%;
+        margin-top:-5px;
 }
-input::-webkit-slider-thumb,
-input::-moz-range-thumb {
+input::-webkit-slider-thumb {
 	-webkit-appearance:none;
 	border-radius: 50%;
 	width: 0.5rem;
 	height: 0.5rem;
 	border: 1px solid #010101;
 	background-color: #aaa;
+	margin-top:-2px;
 }
-input::-moz-range-track,
-input::-webkit-slider-runnable-track,
-input::-ms-track-upper {
+input::-moz-range-thumb{
+	border-radius:50%;
+	width:0.5rem;
+	height:0.5rem;
+	border:1px solid #010101;
+	background:#aaa;
+}
+input::-webkit-slider-runnable-track {
 	-webkit-appearance:none;
-	height: 2vh;
+	height: 0.2rem;
 	width: 100%;
 	background-color:deepskyblue;
+	border-radius:5px;
 }
 
-input::-moz-range-progress,
-input::-ms-track{
+input::-moz-range-progress{
 	background:transparent;
 
 }
+input::-ms-track{
+	background:transparent;}
 input::-moz-range-track {
 	width: 100%;
 	height: 0.2rem;
@@ -816,8 +884,8 @@ input::-moz-range-track {
 }
 .main-controls {
 	width: 70%;
-	margin: 4px 15%;
-	height: 5vh;
+	margin: -4px 15% 4px 15%;
+	height: 60px;
 	display: flex;
 	font-size: 2rem;
 	font-weight: 700;
@@ -826,7 +894,7 @@ input::-moz-range-track {
 }
 .play-wrap {
 	width: 3rem;
-	height: 100%;
+	height: 40px;
 	align-self: center;
 	display: flex;
 	justify-content: flex-start;
@@ -834,10 +902,12 @@ input::-moz-range-track {
 	margin-top: -8px;
 	margin-left: 2px;
 	padding: 0 2rem;
+	font-size:30px;
 }
 .bi-play-fill {
 	font-size: 4rem;
 	margin: 0.5rem 0;
+	padding:0 1rem;
 	transition: all 0.8s ease-out;
 	-webkit-transition: all 0.8s ease-out;
 	-moz-transition: all 0.8s ease-out;
@@ -847,6 +917,7 @@ input::-moz-range-track {
 .bi-pause-fill {
 	font-size: 4rem;
 	margin: 0.5rem 0;
+	padding:0 1rem;
 }
 .rotate-play {
 	width: 0.5rem;
