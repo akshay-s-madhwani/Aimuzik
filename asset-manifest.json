@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Aimuzik/static/css/main.9e7e3419.chunk.css",
-    "main.js": "/Aimuzik/static/js/main.c123c512.chunk.js",
-    "main.js.map": "/Aimuzik/static/js/main.c123c512.chunk.js.map",
-    "runtime-main.js": "/Aimuzik/static/js/runtime-main.e6d7b5e2.js",
-    "runtime-main.js.map": "/Aimuzik/static/js/runtime-main.e6d7b5e2.js.map",
-    "static/js/2.f1776fc7.chunk.js": "/Aimuzik/static/js/2.f1776fc7.chunk.js",
-    "static/js/2.f1776fc7.chunk.js.map": "/Aimuzik/static/js/2.f1776fc7.chunk.js.map",
-    "static/js/3.e4676646.chunk.js": "/Aimuzik/static/js/3.e4676646.chunk.js",
-    "static/js/3.e4676646.chunk.js.map": "/Aimuzik/static/js/3.e4676646.chunk.js.map",
+    "main.css": "/Aimuzik/static/css/main.7c3d785c.chunk.css",
+    "main.js": "/Aimuzik/static/js/main.1438a116.chunk.js",
+    "main.js.map": "/Aimuzik/static/js/main.1438a116.chunk.js.map",
+    "runtime-main.js": "/Aimuzik/static/js/runtime-main.eae5b620.js",
+    "runtime-main.js.map": "/Aimuzik/static/js/runtime-main.eae5b620.js.map",
+    "static/js/2.29891e02.chunk.js": "/Aimuzik/static/js/2.29891e02.chunk.js",
+    "static/js/2.29891e02.chunk.js.map": "/Aimuzik/static/js/2.29891e02.chunk.js.map",
+    "static/js/3.87673300.chunk.js": "/Aimuzik/static/js/3.87673300.chunk.js",
+    "static/js/3.87673300.chunk.js.map": "/Aimuzik/static/js/3.87673300.chunk.js.map",
     "index.html": "/Aimuzik/index.html",
-    "static/css/main.9e7e3419.chunk.css.map": "/Aimuzik/static/css/main.9e7e3419.chunk.css.map",
-    "static/js/2.f1776fc7.chunk.js.LICENSE.txt": "/Aimuzik/static/js/2.f1776fc7.chunk.js.LICENSE.txt"
+    "static/css/main.7c3d785c.chunk.css.map": "/Aimuzik/static/css/main.7c3d785c.chunk.css.map",
+    "static/js/2.29891e02.chunk.js.LICENSE.txt": "/Aimuzik/static/js/2.29891e02.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e6d7b5e2.js",
-    "static/js/2.f1776fc7.chunk.js",
-    "static/css/main.9e7e3419.chunk.css",
-    "static/js/main.c123c512.chunk.js"
+    "static/js/runtime-main.eae5b620.js",
+    "static/js/2.29891e02.chunk.js",
+    "static/css/main.7c3d785c.chunk.css",
+    "static/js/main.1438a116.chunk.js"
   ]
 }
