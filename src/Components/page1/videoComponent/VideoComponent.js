@@ -7,12 +7,12 @@ export default function VideoComponent(props) {
 
     return (
         <div className="video-display">
-            <h2>Trending Musicals</h2>
+            <h2>Hottest Musicals</h2>
             <div className="video-display-inner-wrap">
                 <div className="display-showcase">
-                    <iframe src={props.src} title="MainDisplay" ></iframe>
+                    <iframe src={props.src} title="MainDisplay" onFocus={()=>props.setActive(false)} ></iframe>
                     <BiFullscreen className = 'video-display-icon' onClick = {(e)=>{props.show();
-                    }}/>
+                 props.setActive(false);   }}/>
                 </div>
                 <div className="display-vertical-slide-wrap">
                     <div className="display-vertical-slide">

@@ -1,8 +1,7 @@
 
 const videos= [
-    {name : "Mayassar",
-      link : "https://www.youtube.com/embed/juLPOPNS_fw",
-    img : "/Aimuzik/videoImages/Mayassar.jpg",},
+    {name : "Apsara Ali ft. Cradles",                link : "https://www.youtube.com/embed/0Koxi0Wzxtc",
+    img : "/Aimuzik/videoImages/apsara.jpg",},
     {name : "So Far Away",
       link : "https://www.youtube.com/embed/iscl4_h_8fM",
     img : "/Aimuzik/videoImages/soFarAway.jpg",},
@@ -18,9 +17,9 @@ const videos= [
     // {name : "All time Low",
     //   link : "https://www.youtube.com/embed/AXnqkVTFUqY",
     // img : "/Aimuzik/videoImages/allTime.jpg",},
-    {name : "Apsara Ali ft. Cradles",
-      link : "https://www.youtube.com/embed/0Koxi0Wzxtc",
-    img : "/Aimuzik/videoImages/apsara.jpg",},
+     {name : "Mayassar",
+      link : "https://www.youtube.com/embed/juLPOPNS_fw",
+    img : "/Aimuzik/videoImages/Mayassar.jpg",},
     {name : "Ram Ram Ramethi",
       link : "https://www.youtube.com/embed/Zo6AKsYt4aw",
     img : "/Aimuzik/videoImages/ram.jpg",},

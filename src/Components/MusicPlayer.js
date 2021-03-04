@@ -22,10 +22,19 @@ const seeker = ()=>{
 
 const [liked,setLiked]=useState(false);
 const likeToggle =()=>{setLiked(!liked)}
+let [shuffle, setShuffle] = useState(false);
+let [message , setMessage]=useState('');
+const [visible,setVisible]=useState(false)
+const notif = <div className='message' ><h5>{message}</h5></div>;
+useEffect(()=>{
+	setVisible(true);
+window.setTimeout(()=>setVisible(false),2500)},[message]);
 
 useEffect(()=>{
-	let index = props.album.indexOf(props.data)
-    console.log(index, props.data)    
+	let index = 0; 
+		if(props.album.includes(props.data )){
+	index = props.album.indexOf(props.data)};
+
 	audio.src = props.data.src;
 	audio.load();
 	audio.play();
@@ -49,11 +58,22 @@ useEffect(()=>{
 	const canvasRef = useRef()
     useEffect(()=>{
 audio.onended =()=>{
-	let index = props.album.indexOf(props.data);
-	props.setSrc(props.album[index++]);
+	let index = 1;
+	if(props.album.includes(props.data)){
+	index = props.album.indexOf(props.data);}
+	if(shuffle){
+		index = Math.ceil(Math.random()*props.album.length-2);
+	}
+	if(index <=props.album.length -2){
+	index = index + 1;
+	
+	props.setSrc(props.album[index]);
 audio.load();
-console.log(index,props.data)
-    
+	if (!audio.playing){
+		audio.play()}
+   if(!props.active){props.toggler()}}
+	else{
+		setMessage('Last Song')}
 }},[props.data])
 /*
 function draw(ctx ,buffer,Width,Height){
@@ -130,7 +150,8 @@ const timerFormat =(time)=>{let date = new Date(time*1000);
                         <h4>{props.data.name}</h4>
                         <p>{props.data.artist}</p>
                         </div>
-{liked ? <HeartFill  className ='bi-heart heart-fill' onClick={()=>likeToggle()}/> : <Heart className='bi-heart' onClick={()=>likeToggle()}/>}
+{liked ? <HeartFill  className ='bi-heart heart-fill' onClick={()=>likeToggle()}/> : <Heart className='bi-heart' onClick={()=>{likeToggle();
+setMessage(' Liked ');}}/>}
 	 
                     </div>
                      <div className = 'scroll-wrap' >  
@@ -144,16 +165,15 @@ const timerFormat =(time)=>{let date = new Date(time*1000);
 	    </div>
                     <div className="main-controls">
                         
-                        <ArrowRepeat/>
+                        <ArrowRepeat onClick ={()=>{audio.loop = !audio.loop; setMessage( audio.loop?' Loop : On' :'Loop : Off')}}/>
                         <ChevronLeft onClick = {()=>{
                             let index = props.album.indexOf(props.data);
+				if(shuffle){                                              index = Math.ceil(Math.random()*props.album.length-2);                                      }
                             if(index >=1){
-                            props.setSrc(props.album[index--]);}
+				    index = index-1
+                            props.setSrc(props.album[index]);}else{setMessage('Can\'t Go Back')}
                         audio.load();
-                        if(!audio.isPlaying()){audio.play()}
-                        console.log(index,props.data)
-                            
-                        }}/>
+                        if(!audio.playing){audio.play()}     }}/>
                                 {
             props.active ?        
 <PauseFill className='bi-pause-fill' onClick={()=>{
@@ -169,16 +189,18 @@ const timerFormat =(time)=>{let date = new Date(time*1000);
                     <ChevronRight onClick={()=>{
                         
                         let index = props.album.indexOf(props.data);
-                        if(index <= props.album.length -1){
-                        props.setSrc(props.album[index++]);}
+			    if(shuffle){                                              index = Math.ceil(Math.random()*props.album.length-2);                                      }
+                        if(index <= props.album.length -2){index = index + 1;
+                        props.setSrc(props.album[index]);
                     audio.load();
-                    if(!audio.isPlaying()){audio.play()}
-                    console.log(index,props.data)
-                        
+                    if(!audio.playing){audio.play()}} else{ setMessage(' Last Song ');}
+                          
                     }}/>
-                    <Shuffle/>
+                    <Shuffle onClick ={()=>{setShuffle(!shuffle);
+		    setMessage(shuffle?'Shuffle : On' : 'Shuffle : Off')}}/>
                            </div>
-                           
+	
+{visible ? notif : null} 
                            </div>
                 </div>
     )

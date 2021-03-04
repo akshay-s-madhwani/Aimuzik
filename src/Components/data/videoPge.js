@@ -1,7 +1,7 @@
 const Data = [
     {
         name : "Ram Ram Ramethi",
-        link : "https://www.youtube.com/embed/Zo6AKsYt4aw",
+        link : "https://www.youtube.com/embed/he8wQsL_A4Q",
       img : "/Aimuzik/videoPage/ram.jpg",
     },
     {

@@ -19,7 +19,7 @@ function Page1() {
       setVplayer(!Vplayer);
   }
 //Video Source State
-  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/y45lh8oBzOo");
+  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/0Koxi0Wzxtc");
   const updateVideoSrc = (e) => {
     setVideoSrc(e.target.getAttribute('data-src'));
   }
@@ -60,7 +60,7 @@ return (
   <Banner/>
     <CardSlider heading="Weekly Hits" data = {songs['rand']} onClick = {updateMusic} player = {playerUp} toggler = {setOn} album={updateAlbum}/>
 
-    <VideoComponent srcArray = {Videos} src={videoSrc} update = {updateVideoSrc} show={updateVplayer}/>
+    <VideoComponent srcArray = {Videos} src={videoSrc} update = {updateVideoSrc} show={updateVplayer} setActive={setActive}/>
 
     <CardSlider heading = "English Blockbusters" data = {songs['English2']} onClick = {updateMusic} player = {playerUp} toggler = {setOn} album={updateAlbum}/>
 

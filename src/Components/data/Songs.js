@@ -170,18 +170,7 @@ const Korean = [
         artist : 'Stray Kids',
         img : '/Aimuzik/koreanSongImg/tower.jpg',
         src : '/Aimuzik/korSongs/Tower of God opening full (Stray Kids - TOP).mp3'
-    },
-    {
-        name : '',
-        artist : '',
-        img : '/Aimuzik/koreanSongImg/',
-        src : '/Aimuzik/korSongs/'
-    },
-    {
-        name : '',
-        artist : '',
-        img : '/Aimuzik/koreanSongImg/',
-        src : '/Aimuzik/korSongs/'
+
     },
 ];
 let rand = [];

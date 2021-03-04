@@ -16,16 +16,20 @@ function Page2() {
 `,zIndex:6});
   }
 //Music source state                        
-let [musicSrc, setMusicSrc] = useState(songs['English'][0]);
+let [musicSrc, setMusicSrc] = useState(songs['English'][0])
 
-const updateMusic = (data) =>setMusicSrc(data);                                                     let [active, setActive] = useState(false);        const toggler = ()=>  setActive(!active);                                                           const setOn = ()=> {setActive( true);}
+const updateMusic = (data) =>setMusicSrc(data);
+
+
+let [active, setActive] = useState(false);        const toggler = ()=>  setActive(!active);                                                           const setOn = ()=> {setActive( true);}
     const [query, setQuery] = useState([]);
     let inp = '';
+let song;
     const handleChange = (e)=>{
         inp = e.target.value;
         setQuery([])
         let temp =[], re = new RegExp(inp.toUpperCase()+'\\w','g')
-        let song = [...songs['English']];
+        song = [...songs['English']];
         song.push(...songs['Hindi']);
         song.push(...songs['English2']);
         song.push(...songs['Korean'])
@@ -34,18 +38,19 @@ const updateMusic = (data) =>setMusicSrc(data);                                 
                 if(!temp.includes(src)){
                 temp.push(src);
             setQuery(temp)}
+		    return src;
             
                 }
                 
             })
     }
-          
+          const [album, setAlbum]=useState(songs['rand']);
         
         
     
     return (
         <div className='page-2'>
-    <MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer}/>
+    <MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer} album = {album} setSrc = {setMusicSrc}/>
             <SearchBar change = {handleChange}/>
             
             {    

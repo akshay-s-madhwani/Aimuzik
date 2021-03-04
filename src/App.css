@@ -101,7 +101,8 @@ h1,h2,h3,h4,p{
 	color:#efefef;
 	padding:30px 1rem ;
 	font-size:1.2rem;
-	font-family:'Poppins ';
+	font-weight:600;
+	font-family:'Montserrat';
 	animation:move 15s infinite ease-in;
     }
     @keyframes move{
@@ -131,12 +132,12 @@ h1,h2,h3,h4,p{
         transform:translateX(-120%);
         position:absolute;
     }
-    30%{    content:'Created By Independent Artists of across the Globe!!! ';
+    30%{    content:'Created By Independent Artists from All across the Globe!!! ';
         transform:translateX(0);
         position:relative;
     }
     50%{
-         content:'Created By Independent Artists of across the Globe!!! ';
+         content:'Created By Independent Artists from All across the Globe!!! ';
         transform:translateX(0);
     }
     55%{
@@ -657,7 +658,7 @@ p {
 }
 .profile-backdrop > i {
 	margin: 3px;
-	color: #aaa;
+	color: #fff;
 }
 .page-4 h3 {
 	width: 100%;
@@ -678,11 +679,13 @@ p {
 .profile-span {
 	display: inline-flex;
 	justify-content: space-between;
+	margin:5px 0;
 }
 .profile-span h4 {
 	display: flex;
 	width: 40%;
 	justify-content: flex-start;
+	padding:0 5px;
 }
 .profile-span h4 i {
 	margin: 0 2% 0 4%;
@@ -690,7 +693,61 @@ p {
 .profile-span p {
 	color: #010101 !important;
 	width: 15%;
+	display:flex;
+	justify-content:space-between;
+	align-content:center;
 }
+.follow{
+	width:95%;
+	display:flex;
+	font-family:'Poppins';
+	flex-flow:column;
+	justify-content:space-between;
+	background:white;
+	border-radius:5px;
+	color:#010101;
+	margin:20px 2.5%;
+	
+}
+.followMe{
+	display:inline-flex;
+	justify-content:space-between;
+}
+.outline{
+width:27vw;
+height:1px;
+margin:10px 1vw;
+background:#010101;
+
+}
+.follow-icons{
+	width:100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.follow-icons>*{
+	margin:0 5px;
+}
+
+.follow-icons p{
+	width:15px;
+	height:15px;
+	background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK5eVnseleb1pHwHafYWEqLI7qe04TFc8_2Q&usqp=CAU');
+	background-size:contain;
+	background-position:center;
+}
+#insta{
+	color:rgb(129,52,175);
+}
+#linked{
+	color:rgb(0,118,181);}
+	.regards{
+		color: #010101;
+		font-family:'Poppins';
+	}
 .player-body {
 	position: fixed;
 	width: 100vw;
@@ -892,6 +949,9 @@ input::-moz-range-track {
 	justify-content: space-around;
 	align-items: center;
 }
+.main-controls>*:hover,.main-controls>*:focus,.main-controls>*:active{
+color:#a5f;
+}
 .play-wrap {
 	width: 3rem;
 	height: 40px;
@@ -954,7 +1014,45 @@ input::-moz-range-track {
 	font-size: 1.4rem;
 	padding: 0 3.5rem;
 }
-.main-controls {
+.loading{
+width:30px;
+height:30px;
+border-top:3px solid gray;
+border-bottom:3px solid gray;
+border-left:3px solid transparent;
+border-right:3px solid transparent;
+border-radius:50%;
+animation:load 1s ease-out 0.2s infinite;
+}
+@keyframes load{
+	0%{
+		transform:rotate(0deg);
+		}
+		25%{
+			transform:rotate(0deg);
+		}
+	50%{
+		transform:rotate(180deg);
+	}
+	75%{
+          transform:rotate(180deg);}
+	100%{
+                transform:rotate(360deg);
+        }
+	
+}
+.message {
+	width:100%;
+	height:20px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.message>*{
+color:#010101;
+padding:7px 20px;
+background:beige;
+border-radius:10px;
 }
 
 .extra {
