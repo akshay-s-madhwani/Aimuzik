@@ -8,9 +8,9 @@ import reportWebVitals from './reportWebVitals';
 ReactGa.initialize('G-NM1YCL5XHW');
 ReactDOM.render(
   <React.StrictMode>
-  <Router>
+  <Router basename = 'https://akshay-s-madhwani.github.io/Aimuzik'>
       <Switch>
-        <Route exact path = '/'>
+        <Route exact path = '/Aimuzik'>
           <App />
           </Route>
         </Switch>

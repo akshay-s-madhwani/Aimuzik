@@ -7,7 +7,7 @@ import Page3 from './Components/Page3';
 import Page4 from './Components/Page4';
 export default function App() {
   return (
-    <Router>
+    <Router basename ='/Aimuzik'>
       <Route path = "/" exact component={Page1}/>
       <Route path = '/search' component={Page2}/>
       <Route path = '/videos' component={Page3}/>
