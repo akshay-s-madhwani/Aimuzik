@@ -655,6 +655,8 @@ p {
 	position: absolute;
 	left: calc(50vw - 50px);
 	bottom: -20%;
+	background-position:top;
+	background-size:150% 150%;
 }
 .profile-backdrop > i {
 	margin: 3px;
@@ -683,12 +685,13 @@ p {
 }
 .profile-span h4 {
 	display: flex;
-	width: 40%;
+	width: 50%;
 	justify-content: flex-start;
 	padding:0 5px;
 }
 .profile-span h4 i {
-	margin: 0 2% 0 4%;
+	margin: 0 4% 0 4%;
+	padding:0 20px;
 }
 .profile-span p {
 	color: #010101 !important;
@@ -738,6 +741,7 @@ background:#010101;
 	background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK5eVnseleb1pHwHafYWEqLI7qe04TFc8_2Q&usqp=CAU');
 	background-size:contain;
 	background-position:center;
+	margin-top:-7px;
 }
 #insta{
 	color:rgb(129,52,175);
@@ -747,6 +751,7 @@ background:#010101;
 	.regards{
 		color: #010101;
 		font-family:'Poppins';
+		padding:0 15px;
 	}
 .player-body {
 	position: fixed;

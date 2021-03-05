@@ -19,7 +19,7 @@ const seeker = ()=>{
 },500)
 }
 
-
+const [playable,setPlayable]=useState(false);
 const [liked,setLiked]=useState(false);
 const likeToggle =()=>{setLiked(!liked)}
 let [shuffle, setShuffle] = useState(false);
@@ -45,12 +45,15 @@ useEffect(()=>{
 	{audio.load();
           audio.play();
 	seeker();
+      audio.oncanplay=()=>{setPlayable(true)}
 	}                           
 	else if(props.active && audio.currentTime != 0)
 	{audio.play();
 	seeker();
+	audio.oncanplay=()=>{setPlayable(true)}
 	}                                 
 	else{                                             audio.pause();
+	setPlayable(false);
 	}
 },[props.active]);
 
@@ -128,12 +131,19 @@ function map(value, low1, high1, low2, high2) { return low2 + (high2 - low2) * (
 
 */
 
+
 const timerFormat =(time)=>{let date = new Date(time*1000);
                     let minute = date.getUTCMinutes();
                     let sec = date.getUTCSeconds();
 	if(sec<10){sec = `0${sec}`};
 	if(minute < 10){ minute = `0${minute}`};
+	if(time){
                     return`${minute}:${sec}`;}
+	else{ return `00:00`}
+}
+
+
+
  
     return (
         <div className='player-body' style ={props.style}>
@@ -174,13 +184,15 @@ setMessage(' Liked ');}}/>}
                             props.setSrc(props.album[index]);}else{setMessage('Can\'t Go Back')}
                         audio.load();
                         if(!audio.playing){audio.play()}     }}/>
-                                {
-            props.active ?        
+
+                                { 
+            props.active ?
+		playable ?      
 <PauseFill className='bi-pause-fill' onClick={()=>{
                  props.toggler();
                  
-            }}/>
-            :
+            }}/>: 
+	<div className ='loading'onClick={()=>                      {                                                     props.toggler();                                                                               }}></div>   :
             <PlayFill className = 'bi-play-fill' onClick={()=>{
                props.toggler();   }
     }/>
