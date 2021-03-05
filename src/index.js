@@ -7,9 +7,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-  <Router basename="https://akshay-s-madhwani.github.io/" >
+  <Router>
       <Switch>
-        <Route exact path = '/Aimuzik'>
+        <Route exact path = '/'>
           <App />
           </Route>
         </Switch>
