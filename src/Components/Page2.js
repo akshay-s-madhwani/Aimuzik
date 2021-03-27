@@ -5,16 +5,22 @@ import MusicPlayer from './MusicPlayer';
 import songs  from './data/Songs';
 
 function Page2() {                                        
-  //Music Player component management             
+  //Music Player component management              
   let [Mplayer , setMplayer] = useState({transform
  :`translateY(${100}vh)`,zIndex:6})
-  function playerUp(){                                 setMplayer({transform :`translateY(${0}vh)`,zIndex:10}
-);
- }
-  function playerDown(){
-      setMplayer({transform :`translateY(${100}vh)
-`,zIndex:6});
+  
+const [playerClass,setPlayerClass]=useState('player-body');                                                 function playerUp(){                                      setMplayer({transform :`translateY(${0}vh)`,zIndex:10});
   }
+  function playerDown(){
+
+     setPlayerClass('mini-player-body');
+}
+function playerResize(){
+        if(playerClass === 'mini-player-body'){               setMplayer({transform :`translateY(${100}vh)`,
+        zIndex:6});                                        window.setTimeout(()=>setPlayerClass('player-body'),400);
+        window.setTimeout(()=>setMplayer({transform :`
+translateY(${0}vh)`,zIndex:10}),600);                         }}
+  
 //Music source state                        
 let [musicSrc, setMusicSrc] = useState(songs['English'][0])
 
@@ -50,7 +56,7 @@ let song;
     
     return (
         <div className='page-2'>
-    <MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer} album = {album} setSrc = {setMusicSrc}/>
+    <MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer} album = {album} setSrc = {setMusicSrc} clss={playerClass} setClss={playerResize}/>
             <SearchBar change = {handleChange}/>
             
             {    

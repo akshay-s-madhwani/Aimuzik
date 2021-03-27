@@ -27,16 +27,22 @@ function Page1() {
   //Music Player component management
   
   let [Mplayer , setMplayer] = useState({transform :`translateY(${100}vh)`,zIndex:6})
+  const [playerClass,setPlayerClass]=useState('player-body');
   function playerUp(){
       setMplayer({transform :`translateY(${0}vh)`,zIndex:10});
       
   }
   function playerDown(){
-      setMplayer({transform :`translateY(${100}vh)`,
-      zIndex:6});
-      
-  }
 
+     setPlayerClass('mini-player-body');
+}
+function playerResize(){
+	if(playerClass === 'mini-player-body'){
+	setMplayer({transform :`translateY(${100}vh)`,
+        zIndex:6});
+	window.setTimeout(()=>setPlayerClass('player-body'),400);
+	window.setTimeout(()=>setMplayer({transform :`translateY(${0}vh)`,zIndex:10}),600);
+	}}
   //Music source state
 let [musicSrc, setMusicSrc] = useState(songs['English'][0]);
 const [album, setAlbum]=useState(songs['rand']);
@@ -54,7 +60,7 @@ return (
   {Vplayer ?
 <VideoPlayer src={videoSrc} showNot={updateVplayer}/> : null}
 
-<MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer} album = {album} setSrc = {setMusicSrc} />
+<MusicPlayer data = {musicSrc}  active = {active} toggler = {toggler} player={playerDown} style = {Mplayer} clss={playerClass} setClss={playerResize} album = {album} setSrc = {setMusicSrc} />
 
 
   <Banner/>

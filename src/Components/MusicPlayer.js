@@ -146,21 +146,21 @@ const timerFormat =(time)=>{let date = new Date(time*1000);
 
  
     return (
-        <div className='player-body' style ={props.style}>
+        <div className={props.clss} style ={props.style}>
 	    
             <div className="album-art-section" style={{backgroundImage : `url(${props.data.img})`}}>
                 <ChevronDown className='bi-chevron-down' onClick ={()=>{props.player()}}/>
-                <img src={props.data.img} alt="Album Art" className="album-art"/>
+                <img src={props.data.img} alt="Album Art" className="album-art" onClick={()=>{props.setClss()}}/>
 	    <canvas id = 'effects' width='200' height='200' ref={canvasRef}></canvas>
                 </div>
                 <div className="player-controls">
                     <div className="player-song-info">
                         <Soundwave className='soundwave'/>
-                        <div className="song-name">
+                        <div className="song-name" onClick={()=>{props.setClss()}}>
                         <h4>{props.data.name}</h4>
                         <p>{props.data.artist}</p>
                         </div>
-{liked ? <HeartFill  className ='bi-heart heart-fill' onClick={()=>likeToggle()}/> : <Heart className='bi-heart' onClick={()=>{likeToggle();
+{liked ? <HeartFill id='heart' className ='bi-heart heart-fill' onClick={()=>likeToggle()}/> : <Heart id='heart' className='bi-heart' onClick={()=>{likeToggle();
 setMessage(' Liked ');}}/>}
 	 
                     </div>
@@ -175,7 +175,7 @@ setMessage(' Liked ');}}/>}
 	    </div>
                     <div className="main-controls">
                         
-                        <ArrowRepeat onClick ={()=>{audio.loop = !audio.loop; setMessage( audio.loop?' Loop : On' :'Loop : Off')}}/>
+                        <ArrowRepeat className='arrow-repeat'  onClick ={()=>{audio.loop = !audio.loop; setMessage( audio.loop?' Loop : On' :'Loop : Off')}}/>
                         <ChevronLeft onClick = {()=>{
                             let index = props.album.indexOf(props.data);
 				if(shuffle){                                              index = Math.ceil(Math.random()*props.album.length-2);                                      }
@@ -208,7 +208,7 @@ setMessage(' Liked ');}}/>}
                     if(!audio.playing){audio.play()}} else{ setMessage(' Last Song ');}
                           
                     }}/>
-                    <Shuffle onClick ={()=>{setShuffle(!shuffle);
+                    <Shuffle className='shuffle' onClick ={()=>{setShuffle(!shuffle);
 		    setMessage(shuffle?'Shuffle : On' : 'Shuffle : Off')}}/>
                            </div>
 	

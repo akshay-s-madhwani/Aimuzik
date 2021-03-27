@@ -1,5 +1,7 @@
+
 html,
-body {
+body{
+	
 	box-sizing: border-box;
 }
 * {
@@ -12,7 +14,8 @@ a {
 	outline: none;
 }
 a:hover,
-a:focus,
+a:focus
+,
 a:active {
 	color: #a5f;
 }
@@ -25,6 +28,7 @@ body {
 	justify-content: space-around;
 	font-family: "Roboto";
 /*	background-color:#212121;*/
+	
 }
 h2,
 h3 {
@@ -753,6 +757,10 @@ background:#010101;
 		font-family:'Poppins';
 		padding:0 15px;
 	}
+	.player{
+transition: transform 1.2s cubic-bezier(0.39,
+0.575, 0.565);
+	}
 .player-body {
 	position: fixed;
 	width: 100vw;
@@ -762,9 +770,10 @@ background:#010101;
 	align-items: center;
 	background-color: #fbfffa;
 	z-index: 8;
-	top: -3vh;
+	top:-3vh;
 	border-radius: 30px 30px 0 0;
-	transition: all 1.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+	transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565);
+	transition: transform 1.2s cubic-bezier(0.39, 0.575, 0.565);
 	-webkit-transition: ;
 	-moz-transition: ;
 	-ms-transition: ;
@@ -779,7 +788,76 @@ background:#010101;
 	-moz-border-radius: 30px 30px 0 0;
 	-ms-border-radius: 30px 30px 0 0;
 	-o-border-radius: 30px 30px 0 0;
+ }
+ .mini-player-body{
+width:100%;
+height:10vh;
+padding-bottom:1vh;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:#010101;
+position:fixed;
+bottom:8vh;
+background:#fbfffa;
+border:0.5px solid #101010;
+border-radius:5px;
+transition: transform 1.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+ }
+
+ .mini-player-body>.player-controls{
+	 height:100%;
+         display:flex;
+	 justify-content:space-around;
+	 align-content:center;
+	 align-self:flex-start;
+	 width:70%;
+	 flex-flow:row nowrap;
+	 padding-left:5%;
+ }
+ .mini-player-body > .album-art-section{
+width:20%;                                        
+height:100%;                                            border-radius:10px;
+margin:0;
+margin-left:1%;
+margin-top:2%;
+
+	 }
+	 .mini-player-body>.album-art-section>.album-art{
+		 width:100%;
+		 height:100%;
+		 border-radius:5px;
+	 }
+
+.mini-player-body >.player-controls> .scroll-wrap,.mini-player-body>.album-art-section>.bi-chevron-down,.mini-player-body>.player-controls>.player-song-info>.soundwave,.mini-player-body>.player-controls>.player-song-info>#heart,.mini-player-body>.player-controls>.main-controls>.arrow-repeat,.mini-player-body>.player-controls>.main-controls>.shuffle
+{  display:none !important;}
+
+
+.mini-player-body>.player-controls>.main-controls{
+width:49.5%;
+display:flex;
+justify-content:space-between;
+height:100%;
+margin:0;
+margin-bottom:5%;
+margin-right:2%;
+	}
+
+.mini-player-body>.player-controls>.player-song-info>.song-name{
+width:100%;
+padding-top:5%;
+
 }
+	.mini-player-body>.player-controls>.player-song-info{
+	width:49.5%;
+	min-width:45%;
+	word-wrap:wrap;
+	height:100%;
+}
+.mini-player-body>.player-controls>.main-controls>*{font-size:1.4rem;}
+	.mini-player-body>.player-controls>.main-controls>.bi-play-fill,.mini-player-body>.player-controls>.main-controls>.bi-pause-fill{
+		font-size:2.4rem;}
+	
 .bi-chevron-down {
 	position: absolute;
 	top: calc(3vh + 20px);

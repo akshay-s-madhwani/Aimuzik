@@ -11,23 +11,16 @@ const English2 = [
         img : "/Aimuzik/engSongImg/disney.jpg",
         src:"/Aimuzik/English/Mad at Disney.mp3",
     },
+	{
+        name : "Surrender",
+        artist : "Natalie Taylor",
+        img : "/Aimuzik/engSongImg/surrender.jpg",            src:"/Aimuzik/English/Natalie Taylor - Surrender (Lyrics).mp3",                                         },                                                    {                                                         name : "Lily",
+        artist : "Alan Walker , K-391",                       img : "/Aimuzik/engSongImg/lily.jpg",             src:"/Aimuzik/English/Alan Walker, K-391 & Emelie Hollow - Lily (Lyrics).mp3",                          },
     {
         name : "Not your Barbie girl",
         artist : "Ava max",
         img : "/Aimuzik/engSongImg/barbie.jpg",
         src:"/Aimuzik/English/Ava Max - Not Your Barbie Girl [Official Audio].mp3",
-    },
-    {
-        name : "Surrender",
-        artist : "Natalie Taylor",
-        img : "/Aimuzik/engSongImg/surrender.jpg",
-        src:"/Aimuzik/English/Natalie Taylor - Surrender (Lyrics).mp3",
-    },
-    {
-        name : "Lily",
-        artist : "Alan Walker , K-391",
-        img : "/Aimuzik/engSongImg/lily.jpg",
-        src:"/Aimuzik/English/Alan Walker, K-391 & Emelie Hollow - Lily (Lyrics).mp3",
     },
     
 ]
@@ -175,18 +168,18 @@ const Korean = [
 ];
 let rand = [];
 do{
-  let eng = English[Math.ceil(Math.random()*5)];
-    let hindi = Hindi[Math.ceil(Math.random()*5)];
-    let eng2 = English2[Math.ceil(Math.random()*4)];
+  let eng2 = English2[Math.ceil((Math.random()*5)-1)];
+    let hindi = Hindi[Math.ceil(Math.random()*6)];
+let eng = English[Math.ceil((Math.random()*6)-1)];
+
+if(!rand.includes(eng2)){
+    rand.push(eng2);                                    }
+if(!rand.includes(hindi)){                              rand.push(hindi)
+}
 if(!rand.includes(eng)){
   rand.push(eng);
 }
-if(!rand.includes(hindi)){
-  rand.push(hindi)
-}
-if(!rand.includes(eng2)){
-    rand.push(eng2);
-  }
+
 }while(rand.length <=10);
 
 export default {English2, English, Hindi, Korean, rand}
