@@ -1215,3 +1215,628 @@ canvas {
 	display: grid;
 	place-items: center;
 }
+
+/* ==========================================================================
+   RESPONSIVE LAYER
+
+   Everything above is the original mobile-first design and is not modified.
+
+   Two ideas keep this fluid rather than "a second fixed layout":
+
+   1. `--rail` is the single source of truth for the side-navigation width.
+      It is 0px by default, so every offset derived from it (page insets, the
+      now-playing bar) collapses on its own when the tab bar is docked at the
+      bottom. Nothing can be left stranded at a stale offset on resize.
+
+   2. Sizes use clamp()/min() so they scale continuously with the viewport,
+      and the two multi-column areas reflow via flex-wrap at their own
+      intrinsic minimum width instead of at an arbitrary breakpoint.
+   ========================================================================== */
+:root {
+	--rail: 0px; /* side nav width; 0 while the tab bar is at the bottom */
+	--bar: 0px; /* bottom clearance reserved for the now-playing bar */
+	--navH: 55px; /* height of the bottom tab bar; must match .nav */
+	--gutter: clamp(1rem, 2.2vw, 2.25rem);
+	--shell: 1440px;
+}
+
+.page-1,
+.page-2,
+.page3,
+.page-4 {
+	box-sizing: border-box;
+	padding-left: var(--rail);
+}
+
+/* Several base rules size to 100vw. On a phone that equals the viewport, but
+   with a classic (non-overlay) scrollbar it is wider than the content box and
+   produces a stray horizontal scrollbar at any window width. */
+html,
+body {
+	overflow-x: hidden;
+}
+
+/* --- short-viewport robustness (applies at every width) ---
+   The player sizes itself as a proportion of the viewport (102vh tall, 60%
+   artwork, mini bar at bottom: 8vh / height: 10vh) while its contents are
+   fixed pixel sizes. On a short window those proportions shrink past the
+   contents: the transport gets pushed off the bottom of the expanded player,
+   and the mini bar slides behind the fixed 55px tab bar — at 450px tall, 19px
+   of it including part of the transport row.
+
+   Anchoring the bar to the tab bar instead of to a percentage, and letting the
+   artwork shrink so the controls keep their intrinsic height, fixes both. On a
+   normal phone the numbers land on the originals: at 844px tall the bar still
+   computes to bottom 67.7px / height 84.4px, and the artwork still caps at
+   60%, so nothing moves. */
+.player-body {
+	display: flex;
+	flex-flow: column nowrap;
+}
+.player-body > .album-art-section {
+	flex: 1 1 auto;
+	min-height: 0;
+	max-height: 60%;
+}
+.player-body > .player-controls {
+	flex: 0 0 auto;
+}
+.mini-player-body {
+	bottom: calc(var(--navH) + 1.5vh);
+	height: clamp(68px, 10vh, 96px);
+}
+
+/* The transport row is 70% of its container, but its buttons ask for far more
+   than that: the shuffle and repeat icons carry `padding: 0 3.5rem` each, so
+   the row needs ~364px inside 273px at a 390px viewport. Flexbox resolves the
+   overflow by squashing the SVGs to a few pixels, which is why the buttons
+   render as dots and the panel grows a horizontal scrollbar. Fluid padding
+   keeps the row within its bounds at every width, and `flex: 0 0 auto` stops
+   the icons themselves from ever absorbing the shortfall. */
+.player-body .main-controls {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 420px;
+	height: auto;
+	margin: 0 auto;
+	padding: 0 clamp(0.75rem, 4vw, 2rem);
+	justify-content: space-between;
+	align-items: center;
+	gap: clamp(0.25rem, 1.5vw, 1rem);
+}
+.player-body .main-controls > * {
+	flex: 0 0 auto;
+	padding: 0;
+	font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+}
+.player-body .bi-shuffle,
+.player-body .bi-arrow-repeat {
+	padding: 0;
+	font-size: clamp(1.05rem, 4vw, 1.4rem);
+}
+.player-body .bi-play-fill,
+.player-body .bi-pause-fill {
+	margin: 0;
+	padding: 0;
+	font-size: clamp(2.4rem, 10vw, 3.4rem);
+}
+/* width: 95% plus padding: 0 5% in content-box adds up to 105%, overflowing
+   the panel by 20px at a 390px viewport */
+.player-song-info {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+@media (min-width: 700px) {
+	:root {
+		--rail: clamp(64px, 5.5vw, 92px);
+		--bar: clamp(72px, 8vh, 92px);
+		--navH: 0px; /* the tab bar is a side rail here, not a bottom bar */
+	}
+
+	.page-1,
+	.page-2,
+	.page3,
+	.page-4 {
+		padding-bottom: calc(var(--bar) + 2rem);
+	}
+
+	/* ---------- bottom tab bar -> side rail ---------- */
+	.nav {
+		top: 0;
+		bottom: auto;
+		left: 0;
+		width: var(--rail);
+		height: 100vh;
+		box-sizing: border-box;
+		flex-flow: column nowrap;
+		justify-content: flex-start;
+		align-items: center;
+		gap: clamp(0.15rem, 0.7vh, 0.6rem);
+		padding-top: clamp(0.75rem, 2.5vh, 1.75rem);
+		border-right: 1px solid #ececf2;
+		box-shadow: 2px 0 14px rgba(20, 20, 40, 0.06);
+	}
+	.nav::before {
+		content: "A";
+		flex: none;
+		width: clamp(32px, 3vw, 44px);
+		height: clamp(32px, 3vw, 44px);
+		display: grid;
+		place-items: center;
+		margin-bottom: clamp(1rem, 3vh, 2.25rem);
+		border-radius: 50%;
+		background: linear-gradient(135deg, rgb(72, 7, 149), rgb(181, 0, 237));
+		color: #fff;
+		font-family: "Poppins", "Roboto", sans-serif;
+		font-size: clamp(0.95rem, 1.4vw, 1.35rem);
+		font-weight: 700;
+	}
+	.nav-item {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.nav-item a {
+		width: clamp(36px, 3.4vw, 48px);
+		height: clamp(36px, 3.4vw, 48px);
+		display: grid;
+		place-items: center;
+		border-radius: 12px;
+		transition: background-color 0.2s ease;
+	}
+	.nav-item a:hover {
+		background-color: rgba(145, 2, 208, 0.09);
+	}
+	.nav-icons {
+		font-size: clamp(1.1rem, 1.5vw, 1.45rem);
+	}
+
+	/* ---------- banner ---------- */
+	.banner {
+		min-width: 0;
+		width: calc(100% - 2 * var(--gutter));
+		max-width: var(--shell);
+		margin: clamp(0.75rem, 2vh, 1.5rem) auto 0;
+	}
+
+	/* ---------- horizontal card sliders ---------- */
+	.card-slider,
+	.blockbuster {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: var(--shell);
+		margin: clamp(1.25rem, 3vh, 2.5rem) auto;
+		padding: 0 var(--gutter);
+		overflow: visible;
+	}
+	.card-slider h2,
+	.blockbuster h2 {
+		margin: 0 0 clamp(0.5rem, 1.5vh, 1rem) 0;
+		font-size: clamp(1.1rem, 1.7vw, 1.6rem);
+	}
+	.slide-wrap {
+		height: auto;
+		min-height: 0;
+		max-height: none;
+		margin-right: 0;
+		padding-bottom: 10px;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scrollbar-width: thin;
+		scrollbar-color: rgba(72, 7, 149, 0.3) transparent;
+	}
+	.card-slide {
+		height: clamp(226px, 22vw, 300px);
+		min-height: 0;
+		margin-top: 0;
+	}
+	.card {
+		flex: 0 0 auto;
+		width: clamp(148px, 14vw, 210px);
+		min-width: 0;
+		max-width: none;
+		margin: 0 clamp(6px, 0.7vw, 14px);
+	}
+
+	/* fanned "Top Trending" stacks. The wrapper is zero-width (its cards are
+	   absolutely positioned), so its margin alone sets the gap between stacks. */
+	.multi_card {
+		margin: 0 clamp(5.5rem, 8vw, 9.5rem);
+	}
+	.multi_card .card {
+		margin-left: clamp(1.5rem, 3vw, 3rem);
+	}
+
+	/* ---------- artist row ---------- */
+	.artist-card-wrap {
+		flex: 0 0 auto;
+		width: clamp(136px, 13vw, 200px);
+		margin: 0 clamp(6px, 0.7vw, 14px);
+	}
+	.artist_card {
+		width: clamp(104px, 10.5vw, 168px);
+		height: clamp(104px, 10.5vw, 168px);
+		min-width: 0;
+		min-height: 0;
+		max-width: none;
+		max-height: none;
+		margin: clamp(0.4rem, 1.5vh, 1.1rem) 0;
+	}
+	.artist-name {
+		text-align: center;
+		font-size: clamp(0.8rem, 1.05vw, 1.05rem);
+	}
+
+	/* ---------- "Hottest Musicals" ----------
+	   flex-wrap does the adapting: the showcase wants 520px and the playlist
+	   260px, so they sit side by side when there is room and stack when not,
+	   with no breakpoint involved. */
+	.video-display {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: var(--shell);
+		height: auto;
+		min-height: 0;
+		margin: clamp(1.25rem, 3vh, 2.5rem) auto;
+		padding: 0 var(--gutter);
+	}
+	.video-display > h2 {
+		margin: 0 0 clamp(0.5rem, 1.5vh, 1rem) 0;
+		font-size: clamp(1.1rem, 1.7vw, 1.6rem);
+	}
+	.video-display-inner-wrap {
+		flex-flow: row wrap;
+		height: auto;
+		min-width: 0;
+	}
+	.display-showcase {
+		flex: 1 1 min(100%, 520px);
+		width: auto;
+		height: clamp(240px, 31vw, 460px);
+		min-height: 0;
+	}
+	.display-vertical-slide-wrap {
+		flex: 1 1 260px;
+		width: auto;
+		height: clamp(240px, 31vw, 460px);
+		overflow-x: hidden;
+		overflow-y: auto;
+		scrollbar-width: thin;
+		scrollbar-color: rgba(72, 7, 149, 0.3) transparent;
+	}
+	.display-vertical-slide {
+		width: 100%;
+		height: auto;
+		flex-flow: column;
+		justify-content: flex-start;
+		padding: 0;
+	}
+	.vertical-items {
+		flex: 0 0 clamp(80px, 9vw, 120px);
+		width: calc(100% - 20px);
+		height: clamp(80px, 9vw, 120px);
+		margin: 5px 10px;
+	}
+
+	/* ---------- search ---------- */
+	.search-feild-wrap {
+		justify-content: center;
+		margin-top: clamp(1rem, 2.5vh, 2rem);
+	}
+	.search-feild {
+		width: min(560px, 90%);
+		height: clamp(42px, 5vh, 52px);
+		margin-left: 0;
+		padding: 0 12px;
+		box-sizing: border-box;
+	}
+	.page-2 span input {
+		width: 100%;
+	}
+	.search-result-wrap {
+		width: min(100%, 780px);
+		margin: 0 auto;
+	}
+	.search-result img {
+		margin: 1.5% clamp(10px, 1.5vw, 22px);
+	}
+
+	/* ---------- videos page ---------- */
+	.video-page-tiles {
+		box-sizing: border-box;
+		max-width: min(1180px, 100%);
+		margin: 0 auto 6px;
+		padding: 0 var(--gutter);
+	}
+	.video-page-frame,
+	.video-page-tiles:nth-child(even) > .video-page-frame {
+		height: clamp(210px, 25vw, 400px);
+	}
+
+	/* ---------- profile ---------- */
+	.profile-backdrop {
+		height: clamp(180px, 26vh, 300px);
+		min-height: 0;
+	}
+	.profile-pic {
+		/* 50vw ignores the rail once the page is inset */
+		left: calc(50% - 50px);
+	}
+	.profile-sections,
+	.follow {
+		width: min(100%, 720px);
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.outline {
+		width: clamp(50px, 12vw, 180px);
+		margin: 10px 12px;
+	}
+	.regards {
+		/* the global `p` rule adds margin-left: 5%, offsetting the centring */
+		margin: 0;
+		text-align: center;
+	}
+
+	/* ---------- expanded player -> docked side panel ----------
+	   Anchored to the right edge and full height rather than floating at the
+	   bottom centre, so it reads as a now-playing panel and leaves the
+	   library browsable beside it. */
+	.player-body {
+		top: 0;
+		bottom: 0;
+		left: auto;
+		right: 0;
+		width: clamp(320px, 30vw, 430px);
+		height: 100vh;
+		padding-bottom: 0;
+		border-radius: 20px 0 0 0;
+		box-shadow: -14px 0 48px rgba(20, 15, 50, 0.28);
+	}
+	/* in the docked panel the artwork absorbs all the leftover height rather
+	   than capping at 60%, so there is no dead band above the controls */
+	.player-body > .album-art-section {
+		height: auto;
+		max-height: none;
+		border-radius: 20px 0 20px 20px;
+	}
+	.player-body > .player-controls {
+		flex: 0 0 auto;
+		height: auto;
+		padding-bottom: clamp(1rem, 4vh, 2.5rem);
+	}
+	.album-art {
+		width: clamp(130px, 15vw, 200px);
+		height: clamp(130px, 15vw, 200px);
+	}
+	/* the panel is a fraction of the viewport, so size the transport against
+	   the panel rather than against vw (which the global rule uses) */
+	.player-body .main-controls > * {
+		font-size: clamp(1.3rem, 2vw, 1.8rem);
+	}
+	.player-body .bi-shuffle,
+	.player-body .bi-arrow-repeat {
+		font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+	}
+	.player-body .bi-play-fill,
+	.player-body .bi-pause-fill {
+		font-size: clamp(2.4rem, 4vw, 3.4rem);
+	}
+
+	/* ---------- mini player -> now-playing bar ---------- */
+	.mini-player-body {
+		left: var(--rail);
+		bottom: 0;
+		width: calc(100% - var(--rail));
+		height: var(--bar);
+		padding: 0 clamp(0.75rem, 1.5vw, 1.5rem);
+		box-sizing: border-box;
+		justify-content: flex-start;
+		border: none;
+		border-top: 1px solid #e4e4ec;
+		border-radius: 0;
+		box-shadow: 0 -2px 16px rgba(20, 20, 40, 0.08);
+	}
+	.mini-player-body > .album-art-section {
+		flex: 0 0 clamp(44px, 4.5vw, 60px);
+		width: clamp(44px, 4.5vw, 60px);
+		height: clamp(44px, 4.5vw, 60px);
+		margin: 0;
+		border-radius: 8px;
+	}
+	.mini-player-body > .album-art-section > .album-art {
+		width: 100%;
+		height: 100%;
+		border-radius: 8px;
+	}
+	/* three tracks: song info | transport stacked over the seek bar | spacer.
+	   The empty third track keeps the transport optically centred. */
+	.mini-player-body > .player-controls {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(240px, 2.2fr) minmax(0, 1fr);
+		grid-template-rows: auto auto;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0 0 0 clamp(0.5rem, 1.2vw, 1rem);
+		column-gap: clamp(0.5rem, 1.5vw, 1.5rem);
+	}
+	.mini-player-body > .player-controls > .player-song-info {
+		grid-column: 1;
+		grid-row: 1 / span 2;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 0.6rem;
+		width: auto;
+		min-width: 0;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+	.mini-player-body .player-song-info > .song-name {
+		width: auto;
+		min-width: 0;
+		padding-top: 0;
+		overflow: hidden;
+	}
+	.mini-player-body .player-song-info > .song-name > h4,
+	.mini-player-body .player-song-info > .song-name > p {
+		margin-left: 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.mini-player-body .player-song-info > .song-name > h4 {
+		font-size: clamp(0.85rem, 1.1vw, 1rem);
+	}
+	.mini-player-body .player-song-info > .song-name > p {
+		font-size: clamp(0.72rem, 0.95vw, 0.88rem);
+	}
+	.mini-player-body > .player-controls > .main-controls {
+		grid-column: 2;
+		grid-row: 1;
+		width: 100%;
+		height: auto;
+		margin: 0;
+		justify-content: center;
+		gap: clamp(0.6rem, 2vw, 1.75rem);
+	}
+	.mini-player-body > .player-controls > .main-controls > * {
+		font-size: clamp(0.95rem, 1.25vw, 1.2rem);
+		padding: 0;
+	}
+	.mini-player-body > .player-controls > .main-controls > .bi-play-fill,
+	.mini-player-body > .player-controls > .main-controls > .bi-pause-fill {
+		font-size: clamp(1.5rem, 2.2vw, 2rem);
+		margin: 0;
+		padding: 0;
+	}
+
+	/* The mobile mini-bar hides the seek bar, like button and shuffle/repeat
+	   because there is no room for them. On a full-width bar there is, and
+	   hiding them is what makes the desktop bar feel inert. Each rule below
+	   matches the specificity of the base `display: none !important` chain. */
+	.mini-player-body > .player-controls > .scroll-wrap {
+		display: grid !important;
+		grid-column: 2;
+		grid-row: 2;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		grid-template-rows: auto;
+		align-items: center;
+		column-gap: 10px;
+		width: 100%;
+		height: auto;
+	}
+	.mini-player-body .scroll-wrap > .songTimer {
+		grid-column: 1;
+		grid-row: 1;
+	}
+	.mini-player-body .scroll-wrap > #music-scrollbar {
+		grid-column: 2;
+		grid-row: 1;
+		width: 100%;
+		margin: 0;
+	}
+	.mini-player-body .scroll-wrap > .songDuration {
+		grid-column: 3;
+		grid-row: 1;
+		padding-right: 0;
+	}
+	.mini-player-body > .player-controls > .main-controls > .arrow-repeat,
+	.mini-player-body > .player-controls > .main-controls > .shuffle {
+		display: block !important;
+	}
+	.mini-player-body > .player-controls > .player-song-info > #heart {
+		display: block !important;
+		flex: none;
+		font-size: clamp(1rem, 1.2vw, 1.2rem);
+	}
+
+	/* ---------- full-screen video overlay ---------- */
+	.video-player {
+		justify-content: center;
+		align-items: center;
+	}
+	.video-player-frame {
+		width: min(90vw, 1200px);
+		height: min(50.6vw, 675px);
+		min-height: 0;
+	}
+	.video-player .rotate {
+		/* a device-rotation affordance means nothing with a mouse */
+		display: none;
+	}
+	.video-player .x {
+		top: 1rem;
+		right: 1rem;
+		margin: 0;
+		font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+	}
+
+	/* ---------- pointer affordances ---------- */
+	.card,
+	.artist_card,
+	.vertical-items,
+	.video-page-img,
+	.search-result-text,
+	.nav-icons,
+	.album-art,
+	.song-name,
+	.video-display-icon,
+	.bi-chevron-down,
+	.main-controls > *,
+	#heart,
+	.x,
+	.rotate {
+		cursor: pointer;
+	}
+
+	/* ---------- slim scrollbars for the sliders (WebKit) ---------- */
+	.slide-wrap::-webkit-scrollbar,
+	.display-vertical-slide-wrap::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+	.slide-wrap::-webkit-scrollbar-track,
+	.display-vertical-slide-wrap::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.slide-wrap::-webkit-scrollbar-thumb,
+	.display-vertical-slide-wrap::-webkit-scrollbar-thumb {
+		background: rgba(72, 7, 149, 0.25);
+		border-radius: 4px;
+	}
+	.slide-wrap::-webkit-scrollbar-thumb:hover,
+	.display-vertical-slide-wrap::-webkit-scrollbar-thumb:hover {
+		background: rgba(72, 7, 149, 0.45);
+	}
+}
+
+/* Hover feedback only for real pointers, so touch devices keep clean taps. */
+@media (min-width: 700px) and (hover: hover) {
+	.card,
+	.artist_card,
+	.vertical-items,
+	.video-page-img {
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
+	}
+	.card:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 10px 26px rgba(72, 7, 149, 0.45);
+	}
+	.artist_card:hover {
+		transform: scale(1.05);
+	}
+	.vertical-items:hover,
+	.video-page-img:hover {
+		transform: scale(1.03);
+	}
+	.search-result:hover {
+		background-color: rgba(145, 2, 208, 0.05);
+	}
+}
